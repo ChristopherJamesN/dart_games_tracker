@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
-
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Game, Player
 
@@ -18,12 +17,8 @@ def detail(request, game_id):
 
 
 def results(request, game_id):
-    response = "You're looking at the results of game %s."
-    return HttpResponse(response % game_id)
-
-
-def score(request, game_id):
-    return HttpResponse("You're updating scores on game %s." % game_id)
+    game = get_object_or_404(Game, pk=game_id)
+    return render(request, 'games/results.html', {'game': game})
 
 
 def score(request, game_id):
@@ -37,9 +32,9 @@ def score(request, game_id):
             'error_message': "You didn't select a player.",
         })
     else:
-        selected_player.votes += 1
+        selected_player.points += 1
         selected_player.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('game:results', args=(game.id,)))
+        return HttpResponseRedirect(reverse('games:results', args=(game.id,)))

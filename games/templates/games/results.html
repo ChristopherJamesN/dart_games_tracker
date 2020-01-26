@@ -1,0 +1,9 @@
+<h1>{{ game.max_score }}</h1>
+
+<ul>
+{% for player in game.player_set.all %}
+    <li>{{ player.name }} -- {{ player.points }} points{{ player.points|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'games:detail' game.id %}">Update another score?</a>
