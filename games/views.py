@@ -32,7 +32,7 @@ def score(request, game_id):
             'error_message': "You didn't select a player.",
         })
     else:
-        selected_player.points += 1
+        selected_player.points += int(request.POST['score'])
         selected_player.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a

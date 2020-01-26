@@ -17,5 +17,6 @@
     <input type="radio" name="player" id="player{{ forloop.counter }}" value="{{ player.id }}">
     <label for="player{{ forloop.counter }}">{{ player.name }}</label><br>
 {% endfor %}
+<input type="number" step="1" name="score">
 <input type="submit" value="Score">
 </form>
