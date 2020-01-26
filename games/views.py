@@ -2,9 +2,13 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from .models import Game
+
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the games index.")
+    latest_game_list = Game.objects.order_by('-game_date')[:5]
+    context = {'latest_game_list': latest_game_list}
+    return render(request, 'games/index.html', context)
 
 
 def detail(request, game_id):
