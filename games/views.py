@@ -37,4 +37,4 @@ def score(request, game_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('games:results', args=(game.id,)))
+        return HttpResponseRedirect(reverse('games:detail', args=(game.id,)))
