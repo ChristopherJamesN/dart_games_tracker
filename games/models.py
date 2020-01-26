@@ -20,6 +20,10 @@ class Player(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     points = models.IntegerField(default=0)
+    difference_from_max = models.IntegerField(default=300)
 
     def __str__(self):
         return self.name
+
+    def difference_from_max(self):
+        return self.game.max_score - self.points

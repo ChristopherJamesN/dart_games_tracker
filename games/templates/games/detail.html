@@ -2,8 +2,9 @@
 <h1>{{ game.id }}</h1>
 <ul>
 {% for player in game.player_set.all %}
-    <li>{{ player.name }}</li>
-    <li>{{ player.points }}</li>
+    <li>Name: {{ player.name }}</li>
+    <li>Points: {{ player.points }}</li>
+    <li>Points to Go: {{ player.difference_from_max }}</li>
 {% endfor %}
 </ul>
 

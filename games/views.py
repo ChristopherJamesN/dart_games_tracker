@@ -33,6 +33,8 @@ def score(request, game_id):
         })
     else:
         selected_player.points += int(request.POST['score'])
+        selected_player.difference_from_max = selected_player.game.max_score - \
+            selected_player.points
         selected_player.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
