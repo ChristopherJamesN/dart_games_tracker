@@ -6,3 +6,16 @@
     <li>{{ player.points }}</li>
 {% endfor %}
 </ul>
+
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'games:score' game.id %}" method="post">
+{% csrf_token %}
+{% for player in game.player_set.all %}
+    <input type="radio" name="player" id="player{{ forloop.counter }}" value="{{ player.id }}">
+    <label for="player{{ forloop.counter }}">{{ player.name }}</label><br>
+{% endfor %}
+<input type="submit" value="Score">
+</form>
