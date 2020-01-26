@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 
 from django.http import HttpResponse
 
@@ -12,7 +13,8 @@ def index(request):
 
 
 def detail(request, game_id):
-    return HttpResponse("You're looking at game %s." % game_id)
+    game = get_object_or_404(Game, pk=game_id)
+    return render(request, 'games/detail.html', {'game': game})
 
 
 def results(request, game_id):
