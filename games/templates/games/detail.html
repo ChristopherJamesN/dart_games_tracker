@@ -1,1 +1,8 @@
-{{ game }}
+<h1>{{ game.max_score }}</h1>
+<h1>{{ game.id }}</h1>
+<ul>
+{% for player in game.player_set.all %}
+    <li>{{ player.name }}</li>
+    <li>{{ player.points }}</li>
+{% endfor %}
+</ul>
