@@ -12,7 +12,8 @@ class Game(models.Model):
         return str(self.max_score)
 
     def was_played_recently(self):
-        return self.game_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now >= self.game_date >= timezone.now() - datetime.timedelta(days=1)
 
 
 class Player(models.Model):

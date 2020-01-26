@@ -2,7 +2,7 @@
 
 <ul>
 {% for player in game.player_set.all %}
-    <li>{{ player.name }} -- {{ player.points }} points{{ player.points|pluralize }}</li>
+    <li>{{ player.name }} -- {{ player.points }} point{{ player.points|pluralize }}</li>
 {% endfor %}
 </ul>
 
