@@ -24,6 +24,3 @@ class Player(models.Model):
 
     def __str__(self):
         return self.name
-
-    def difference_from_max(self):
-        return self.game.max_score - self.points
